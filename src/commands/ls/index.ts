@@ -12,9 +12,9 @@ export default class Ls extends Command {
 
   async run(): Promise<void> {
     const users = [
-      ['ID', 'Name', 'Email'],
-      [0, 'moyu', 'daydaymoyu@gmail.com'],
-      [1, 'hunlongyu', 'hunlongyu@gmail.com'],
+      ['ID', 'Name', 'Email', 'Current'],
+      [0, 'moyu', 'daydaymoyu@gmail.com', '√'],
+      [1, 'hunlongyu', 'hunlongyu@gmail.com', ''],
     ]
 
     const config: TableUserConfig = {
@@ -22,6 +22,12 @@ export default class Ls extends Command {
         alignment: 'center',
         content: 'Git user list',
       },
+      columns: [
+        { alignment: 'center' },
+        { alignment: 'right' },
+        { alignment: 'right' },
+        { alignment: 'center' },
+      ],
     }
 
     try {

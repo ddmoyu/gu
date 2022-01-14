@@ -1,72 +1,87 @@
-## gu
+# gu
 
 switch git user, support local and global.(切换 git 用户，支持本地和全局)
 
-### Command  \ 指令
-
-#### `ls`
-List all users. \ 列出所有用户。
+## Usage \ 使用
 ```bash
-gu ls
+npm i -g @ddmoyu/gu
+gu COMMAND
 ```
 
-#### `add`
-Add user. \ 添加用户。
-```bash
-gu add moyu daydaymoyu@gmail.com
+## Commands \ 命令
+
+* `gu ls`
+* `gu add`
+* `gu rm`
+* `gu use`
+
+## `gu ls`
+```
+USAGE
+ $ gu ls
+
+DESCRIPTION
+ list all users.  
+
+EXAMPLES
+ $ gu ls
+  ╔═════════════════════════════════════════════════╗
+  ║                  Git user list                  ║
+  ╟────┬───────────┬──────────────────────┬─────────╢
+  ║ ID │      Name │                Email │ Current ║
+  ╟────┼───────────┼──────────────────────┼─────────╢
+  ║ 0  │      moyu │ daydaymoyu@gmail.com │    √    ║
+  ╟────┼───────────┼──────────────────────┼─────────╢
+  ║ 1  │     dayday│ daydaymoyu@gmail.com │         ║
+  ╚════╧═══════════╧══════════════════════╧═════════╝
 ```
 
+## `gu add`
+```
+USAGE
+ $ gu add
 
-#### `rm`
-Remove user. \ 删除用户。
-```bash
-gu rm 0
+DESCRIPTION
+ Add user.  
 
-gu rm 2 -i
+EXAMPLES
+ $ gu add moyu daydaymoyu@gmail.com
 
-gu rm moyu -n
+ // Add moyu successfull!
 ```
 
-#### `use`
-Use this user. \ 设置该用户为当前仓库用户。
+## `gu rm`
 ```bash
-gu use 0
+USAGE
+ $ gu rm
 
-gu use 2 -i
+DESCRIPTION
+ remove user.
 
-gu use moyu -n
+EXAMPLES
+ $ gu rm 0
+ // or
+ $ gu rm moyu
+
+ // remove moyu successfull!
 ```
 
-### Options \ 设置
+## `gu use`
+```txt
+USAGE
+ $ gu use
 
-#### `-i`
-use this id. \  使用该 id。
-```bash
-gu rm 2 -i
+DESCRIPTION
+ use this user.
 
-gu use 2 -i
-```
+FLAGS
+  -l   set the user as local user.(Default) \ 设置该用户为当前仓库用户。 
+  -g   set the user as global user. \ 设置该用户为全局仓库用户。
 
-#### `-n`
-use this name. \ 使用该用户名。
-```bash
-gu rm moyu -n
+EXAMPLES
+ $ gu use 0 -l
+ // or
+ $ gu use moyu -g
 
-gu use moyu -n
-```
-
-#### `-g`
-set the user as global user. \ 设置该用户为全局仓库用户。
-```bash
-gu use 0 -g
-
-gu use moyu -n -g
-```
-
-#### `-l`
-set the user as local user. \ 设置该用户为当前仓库用户。
-```bash
-gu use 0 -l
-
-gu use moyu -n -l
+ // use moyu successfull!
 ```
