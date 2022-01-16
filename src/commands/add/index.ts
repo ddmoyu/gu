@@ -1,7 +1,7 @@
 import { Command } from '@oclif/core'
 import { ArgInput } from '@oclif/core/lib/interfaces'
 import chalk = require('chalk')
-
+import db from '../../utils/db'
 export default class Add extends Command {
   static description = 'add git user'
 
@@ -14,8 +14,13 @@ export default class Add extends Command {
 
     if (!name || !email) {
       console.log(chalk.yellow('miss name or email \ngu add name email'))
+    } else {
+      const flag = db.add({ name, email })
+      if (flag) {
+        console.log('== add success ==', flag)
+      } else {
+        console.log('== add failed ==', flag)
+      }
     }
-
-    console.log('== add ==', name, email)
   }
 }
