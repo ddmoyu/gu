@@ -9,7 +9,6 @@ export default class Ls extends Command {
 
   async run(): Promise<void> {
     const users: User[] = db.all()
-    console.log('users:', users)
     const arr = []
     arr.push(['ID', 'Name', 'Email'])
     for (const [i, user] of users.entries()) {
@@ -26,8 +25,7 @@ export default class Ls extends Command {
       columns: [
         { alignment: 'center' },
         { alignment: 'right' },
-        { alignment: 'right' },
-        { alignment: 'center' }
+        { alignment: 'right' }
       ]
     }
     console.log(table(arr, config))
