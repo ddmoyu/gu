@@ -1,21 +1,22 @@
 import { Command } from '@oclif/core'
 import { table, TableUserConfig } from 'table'
-import shell = require('shelljs')
+import db from '../../utils/db'
 
-if (!shell.which('git')) {
-  shell.echo('Sorry, this script requires git')
-  shell.exit(1)
-}
+interface User { [key: string]: string }
 
 export default class Ls extends Command {
   static description = 'git user list'
 
   async run(): Promise<void> {
-    const users = [
-      ['ID', 'Name', 'Email', 'Current'],
-      [0, 'moyu', 'daydaymoyu@gmail.com', '√'],
-      [1, 'hunlongyu', 'hunlongyu@gmail.com', '']
-    ]
+    const users: User[] = db.all()
+    console.log('users:', users)
+    const arr = []
+    arr.push(['ID', 'Name', 'Email'])
+    for (const [i, user] of users.entries()) {
+      const d = []
+      d.push(i, user.name, user.email)
+      arr.push(d)
+    }
 
     const config: TableUserConfig = {
       header: {
@@ -29,14 +30,6 @@ export default class Ls extends Command {
         { alignment: 'center' }
       ]
     }
-
-    try {
-      const res = shell.exec('git --version')
-      console.log('=== res ===', res)
-    } catch (error) {
-      console.log('== error: ==', error)
-    }
-
-    console.log(table(users, config))
+    console.log(table(arr, config))
   }
 }
