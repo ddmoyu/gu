@@ -1,3 +1,4 @@
+import { $ } from 'zx'
 import shell = require('shelljs')
 
 interface User { [key: string]: string }
@@ -26,7 +27,12 @@ function getGlobal(): User {
   return { name: '', email: '' }
 }
 
+function zxTest() {
+  return $`git config --global user.name`
+}
+
 export {
   getLocal,
-  getGlobal
+  getGlobal,
+  zxTest
 }
