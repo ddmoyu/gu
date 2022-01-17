@@ -1,7 +1,21 @@
 import chalk = require('chalk')
-
+import { table, TableUserConfig } from 'table'
 interface User { [key: string]: string }
-function listTable(arr: User[], local: User, global: User): (string | number)[][] {
+
+const config: TableUserConfig = {
+  header: {
+    alignment: 'center',
+    content: chalk.red('Git users list')
+  },
+  columns: [
+    { alignment: 'center' },
+    { alignment: 'right' },
+    { alignment: 'right' },
+    { alignment: 'center' }
+  ]
+}
+
+function list(arr: User[], local: User, global: User): (string | number)[][] {
   const tb: (string | number)[][] = [[chalk.greenBright('ID'), chalk.greenBright('Name'), chalk.greenBright('Email'), chalk.greenBright('Status')]]
   let idx = 0
   if (local.name) {
@@ -33,6 +47,11 @@ function listTable(arr: User[], local: User, global: User): (string | number)[][
   }
 
   return tb
+}
+
+function listTable(arr: User[], local: User, global: User): string {
+  const li = list(arr, local, global)
+  return chalk.blue(table(li, config))
 }
 
 export {
