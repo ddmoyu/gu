@@ -1,12 +1,11 @@
-import { $ } from 'zx'
 import shell = require('shelljs')
 
 interface User { [key: string]: string }
 
 function getLocal(): User {
-  const name = shell.exec('git config --local user.name').stdout
+  const name = shell.exec('git config --local user.name', { silent: true }).stdout
   if (name) {
-    const email = shell.exec('git config --local user.email').stdout
+    const email = shell.exec('git config --local user.email', { silent: true }).stdout
     if (email) {
       return { name: name.replace('\n', ''), email: email.replace('\n', '') }
     }
@@ -16,9 +15,9 @@ function getLocal(): User {
 }
 
 function getGlobal(): User {
-  const name = shell.exec('git config --global user.name').stdout
+  const name = shell.exec('git config --global user.name', { silent: true }).stdout
   if (name) {
-    const email = shell.exec('git config --global user.email').stdout
+    const email = shell.exec('git config --global user.email', { silent: true }).stdout
     if (email) {
       return { name: name.replace('\n', ''), email: email.replace('\n', '') }
     }
@@ -27,12 +26,7 @@ function getGlobal(): User {
   return { name: '', email: '' }
 }
 
-function zxTest() {
-  return $`git config --global user.name`
-}
-
 export {
   getLocal,
-  getGlobal,
-  zxTest
+  getGlobal
 }

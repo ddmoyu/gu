@@ -22,8 +22,7 @@
     "chalk": "^4.1.2",
     "shelljs": "^0.8.5",
     "stormdb": "^0.5.2",
-    "table": "^6.8.0",
-    "zx": "^4.3.0"
+    "table": "^6.8.0"
   },
   "devDependencies": {
     "@oclif/test": "^2",
