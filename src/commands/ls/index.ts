@@ -1,22 +1,20 @@
 import { Command } from '@oclif/core'
 import { table, TableUserConfig } from 'table'
 import db from '../../utils/db'
+import { getLocal, getGlobal } from '../../utils/git'
+import { listTable } from '../../utils/table'
+import chalk = require('chalk')
 
 interface User { [key: string]: string }
 
 export default class Ls extends Command {
-  static description = 'git user list'
+  static description = 'git users list'
 
   async run(): Promise<void> {
     const users: User[] = db.all()
-    const arr = []
-    arr.push(['ID', 'Name', 'Email'])
-    for (const [i, user] of users.entries()) {
-      const d = []
-      d.push(i, user.name, user.email)
-      arr.push(d)
-    }
-
+    const localUser = getLocal()
+    const globalUser = getGlobal()
+    const data = listTable(users, localUser, globalUser)
     const config: TableUserConfig = {
       header: {
         alignment: 'center',
@@ -25,9 +23,10 @@ export default class Ls extends Command {
       columns: [
         { alignment: 'center' },
         { alignment: 'right' },
-        { alignment: 'right' }
+        { alignment: 'right' },
+        { alignment: 'center' }
       ]
     }
-    console.log(table(arr, config))
+    console.log(chalk.blue(table(data, config)))
   }
 }
