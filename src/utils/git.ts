@@ -26,7 +26,24 @@ function getGlobal(): User {
   return { name: '', email: '' }
 }
 
+function deleteUser(name: string): boolean {
+  const local = getLocal()
+  const global = getGlobal()
+  if (local.name && local.name === name) {
+    shell.exec('git config --unset --local user.name', { silent: true })
+    return true
+  }
+
+  if (global.name && global.name === name) {
+    shell.exec('git config --unset --global user.name', { silent: true })
+    return true
+  }
+
+  return false
+}
+
 export {
   getLocal,
-  getGlobal
+  getGlobal,
+  deleteUser
 }

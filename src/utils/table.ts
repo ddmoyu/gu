@@ -29,7 +29,7 @@ function list(arr: User[], local: User, global: User): (string | number)[][] {
   }
 
   if (arr.length > 0) {
-    for (const [i, user] of arr.entries()) {
+    for (const user of arr) {
       const d = []
       if (user.name === local.name) {
         continue
@@ -39,7 +39,7 @@ function list(arr: User[], local: User, global: User): (string | number)[][] {
         continue
       }
 
-      d.push(idx + i, user.name, user.email, '')
+      d.push(idx++, user.name, user.email, '')
       tb.push(d)
     }
 
@@ -55,5 +55,6 @@ function listTable(arr: User[], local: User, global: User): string {
 }
 
 export {
+  list,
   listTable
 }

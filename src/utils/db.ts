@@ -1,5 +1,7 @@
 import path = require('path')
 import StormDB = require('stormdb')
+import { getLocal, getGlobal, deleteUser } from './git'
+import { list } from './table'
 
 interface User { [key: string]: string }
 
@@ -35,22 +37,23 @@ class Database {
   }
 
   delete(argv: string) {
-    const list = this.all()
+    const all = this.all()
+    const localUser = getLocal()
+    const globalUser = getGlobal()
+    const users = list(all, localUser, globalUser)
     const reg = /^\d+(\.\d+)?$/
-    if (reg.test(argv)) {
-      if (argv < list.length) {
-        console.log(this.db.get('users').get(argv).value(), '----')
-        this.db.get('users').get(argv).delete(true)
-        this.db.save()
-        console.log(this.db, 'list')
-        return true
-      }
 
-      return false
+    let name = ''
+    if (reg.test(argv)) {
+      if (Number(argv) > users.length - 1) return false
+      name = users[Number(argv) + 1][1] as string
+    } else {
+      name = argv
     }
 
-    const idx = list.findIndex((l: User) => l.name === argv)
+    const idx = all.findIndex((l: User) => l.name === name)
     if (idx >= 0) {
+      deleteUser(name)
       this.db.get('users').get(idx).delete(true)
       this.db.save()
       return true
