@@ -53,7 +53,7 @@ function setUser(idName: string, type: string): boolean {
   const reg = /^\d+(\.\d+)?$/
   const user = { name: '', email: '' }
   if (reg.test(idName)) {
-    if (Number(idName) > users.length - 1) return false
+    if (Number(idName) >= users.length - 1) return false
     user.name = users[Number(idName) + 1][1] as string
     user.email = users[Number(idName) + 1][2] as string
   } else {
