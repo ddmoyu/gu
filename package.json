@@ -38,10 +38,10 @@
     "mocha": "^9",
     "oclif": "^2",
     "rimraf": "^3.0.2",
-    "shx": "^0.3.3",
-    "ts-node": "^10.2.1",
+    "shx": "^0.3.4",
+    "ts-node": "^10.4.0",
     "tslib": "^2.3.1",
-    "typescript": "^4.4.3"
+    "typescript": "^4.5.4"
   },
   "oclif": {
     "bin": "gu",
