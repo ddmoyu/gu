@@ -1,4 +1,6 @@
 import shell = require('shelljs')
+import db from './db'
+import { list } from './table'
 
 interface User { [key: string]: string }
 
@@ -42,8 +44,47 @@ function deleteUser(name: string): boolean {
   return false
 }
 
+function setUser(idName: string, type: string): boolean {
+  if (!idName) return false
+  const all = db.all()
+  const localUser = getLocal()
+  const globalUser = getGlobal()
+  const users = list(all, localUser, globalUser)
+  const reg = /^\d+(\.\d+)?$/
+  const user = { name: '', email: '' }
+  if (reg.test(idName)) {
+    if (Number(idName) > users.length - 1) return false
+    user.name = users[Number(idName) + 1][1] as string
+    user.email = users[Number(idName) + 1][2] as string
+  } else {
+    for (const item of users) {
+      if (item[1] === idName) {
+        user.name = idName
+        user.email = item[2] as string
+      }
+    }
+
+    if (user.name === '') return false
+  }
+
+  if (type === 'local') {
+    shell.exec(`git config --local user.name ${user.name}`, { silent: true })
+    shell.exec(`git config --local user.email ${user.email}`, { silent: true })
+    return true
+  }
+
+  if (type === 'global') {
+    shell.exec(`git config --global user.name ${user.name}`, { silent: true })
+    shell.exec(`git config --global user.email ${user.email}`, { silent: true })
+    return true
+  }
+
+  return false
+}
+
 export {
   getLocal,
   getGlobal,
-  deleteUser
+  deleteUser,
+  setUser
 }
