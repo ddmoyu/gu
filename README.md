@@ -1,4 +1,6 @@
-# gus
+# gus 
+
+![GitHub top language](https://img.shields.io/github/languages/top/ddmoyu/gu?style=for-the-badge) ![npm](https://img.shields.io/npm/v/@ddmoyu/gu?style=for-the-badge)
 
 git user switch, support local and global.(切换 git 用户，支持本地和全局)
 
