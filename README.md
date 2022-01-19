@@ -1,30 +1,30 @@
-# gs
+# gus
 
 switch git user, support local and global.(切换 git 用户，支持本地和全局)
 
 ## Usage \ 使用
 ```bash
-npm i -g @ddmoyu/gs
-gs COMMAND
+npm i -g @ddmoyu/gus
+gus COMMAND
 ```
 
 ## Commands \ 命令
 
-* `gs ls`
-* `gs add`
-* `gs rm`
-* `gs use`
+* `gus ls`
+* `gus add`
+* `gus rm`
+* `gus use`
 
-## `gs ls`
+## `gus ls`
 ```
 USAGE
- $ gs ls
+ $ gus ls
 
 DESCRIPTION
  list all users.  
 
 EXAMPLES
- $ gs ls
+ $ gus ls
   ╔═════════════════════════════════════════════════╗
   ║                  Git user list                  ║
   ╟────┬───────────┬──────────────────────┬─────────╢
@@ -36,40 +36,40 @@ EXAMPLES
   ╚════╧═══════════╧══════════════════════╧═════════╝
 ```
 
-## `gs add`
+## `gus add`
 ```
 USAGE
- $ gs add
+ $ gus add
 
 DESCRIPTION
  Add user.  
 
 EXAMPLES
- $ gs add moyu daydaymoyu@gmail.com
+ $ gus add moyu daydaymoyu@gmail.com
 
  // Add moyu successfull!
 ```
 
-## `gs rm`
+## `gus rm`
 ```bash
 USAGE
- $ gs rm
+ $ gus rm
 
 DESCRIPTION
  remove user.
 
 EXAMPLES
- $ gs rm 0
+ $ gus rm 0
  // or
- $ gs rm moyu
+ $ gus rm moyu
 
  // remove moyu successfull!
 ```
 
-## `gs use`
+## `gus use`
 ```txt
 USAGE
- $ gs use
+ $ gus use
 
 DESCRIPTION
  use this user.
@@ -79,9 +79,9 @@ FLAGS
   -g   set the user as global user. \ 设置该用户为全局仓库用户。
 
 EXAMPLES
- $ gs use 0 -l
+ $ gus use 0 -l
  // or
- $ gs use moyu -g
+ $ gus use moyu -g
 
  // use moyu successfull!
 ```

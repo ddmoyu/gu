@@ -4,7 +4,7 @@
   "description": "switch git user",
   "author": "ddmoyu",
   "bin": {
-    "gs": "./bin/run"
+    "gus": "./bin/run"
   },
   "homepage": "https://github.com/ddmoyu/gu",
   "license": "MIT",
@@ -43,7 +43,7 @@
     "typescript": "^4.5.4"
   },
   "oclif": {
-    "bin": "gs",
+    "bin": "gus",
     "dirname": "oex",
     "commands": "./dist/commands",
     "plugins": [],
