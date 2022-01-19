@@ -90,13 +90,4 @@ EXAMPLES
  // use moyu successfull!
 ```
 
-开发：
-```bash
-yarn dev
-yarn dev ls
-
-// or
-
-./bin/dev
-./bin/dev ls
-```
+![Alt](https://repobeats.axiom.co/api/embed/ad5b43957b9b91ed267eea780e8f13cf580dbc1f.svg "Repobeats analytics image")
