@@ -9,9 +9,8 @@ class Database {
   db: StormDB
   constructor() {
     // eslint-disable-next-line unicorn/prefer-module
-    const parent = path.resolve(__dirname, '..')
-    const dir = path.join(parent, 'database')
-    const file = path.join(dir, 'db.stormdb')
+    const parent = path.resolve(__dirname)
+    const file = path.join(parent, 'db.stormdb')
     // eslint-disable-next-line new-cap
     const engine = new StormDB.localFileEngine(file)
     this.db = new StormDB(engine)
