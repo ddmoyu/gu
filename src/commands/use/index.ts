@@ -11,7 +11,7 @@ const config: TableUserConfig = {
 }
 
 export default class Use extends Command {
-  static description = 'set git user name'
+  static description = 'set git user'
 
   static args: ArgInput = [{ name: 'idName' }]
 

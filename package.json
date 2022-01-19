@@ -1,6 +1,6 @@
 {
   "name": "@ddmoyu/gu",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "switch git user",
   "author": "ddmoyu",
   "bin": {
@@ -48,7 +48,20 @@
     "commands": "./dist/commands",
     "plugins": [],
     "topicSeparator": " ",
-    "topics": {}
+    "topics": {
+      "add": {
+        "description": "add git user"
+      },
+      "ls": {
+        "description": "git users list"
+      },
+      "rm": {
+        "description": "remove git user"
+      },
+      "use": {
+        "description": "set git user"
+      }
+    }
   },
   "scripts": {
     "dev": "./bin/dev",
