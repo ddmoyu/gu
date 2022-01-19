@@ -1,6 +1,6 @@
 # gus
 
-switch git user, support local and global.(切换 git 用户，支持本地和全局)
+git user switch, support local and global.(切换 git 用户，支持本地和全局)
 
 ![](./screenshot/00.png)
 
