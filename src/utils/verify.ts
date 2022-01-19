@@ -12,7 +12,7 @@ function verify(name: string, email: string): void {
   if (!name || !email) {
     const data = [
       [`\n${chalk.red('[WARNING]')}\n\n${chalk.red("Miss user's name or email !")}\n`],
-      [`\n${chalk.green('[EXAMPLE]')}\n\n${chalk.green('gu add name email')}\n`]
+      [`\n${chalk.green('[EXAMPLE]')}\n\n${chalk.green('gs add name email')}\n`]
     ]
     console.log(chalk.yellow(table(data, config)))
   } else {
