@@ -18,13 +18,14 @@ const config: TableUserConfig = {
 function list(arr: User[], local: User, global: User): (string | number)[][] {
   const tb: (string | number)[][] = [[chalk.greenBright('ID'), chalk.greenBright('Name'), chalk.greenBright('Email'), chalk.greenBright('Status')]]
   let idx = 0
+  const trHex = chalk.hex('#cec889')
   if (local.name) {
-    tb.push([idx, local.name, local.email, chalk.yellow('Local')])
+    tb.push([trHex(idx), trHex(local.name), trHex(local.email), chalk.yellow('Local')])
     idx++
   }
 
   if (global.name) {
-    tb.push([idx, global.name, global.email, chalk.cyan('Global')])
+    tb.push([trHex(idx), trHex(global.name), trHex(global.email), chalk.cyan('Global')])
     idx++
   }
 
@@ -39,7 +40,7 @@ function list(arr: User[], local: User, global: User): (string | number)[][] {
         continue
       }
 
-      d.push(idx++, user.name, user.email, '')
+      d.push(trHex(idx++), trHex(user.name), trHex(user.email), '')
       tb.push(d)
     }
 
@@ -51,7 +52,7 @@ function list(arr: User[], local: User, global: User): (string | number)[][] {
 
 function listTable(arr: User[], local: User, global: User): string {
   const li = list(arr, local, global)
-  return chalk.blue(table(li, config))
+  return chalk.gray(table(li, config))
 }
 
 export {

@@ -1,8 +1,10 @@
 import chalk = require('chalk')
 import db from './db'
-import { table, TableUserConfig } from 'table'
+import { table, TableUserConfig, getBorderCharacters } from 'table'
 
+const hex = chalk.hex('#fec78f')
 const config: TableUserConfig = {
+  border: getBorderCharacters('norc'),
   columns: [
     { alignment: 'center', width: 50 }
   ]
@@ -11,30 +13,29 @@ const config: TableUserConfig = {
 function verify(name: string, email: string): void {
   if (!name || !email) {
     const data = [
-      [`\n${chalk.red('[WARNING]')}\n\n${chalk.red("Miss user's name or email !")}\n`],
-      [`\n${chalk.green('[EXAMPLE]')}\n\n${chalk.green('gus add name email')}\n`]
+      [`${chalk.red('[WARNING]')}\n${chalk.red("Miss user's name or email !")}`]
     ]
-    console.log(chalk.yellow(table(data, config)))
+    console.log(hex(table(data, config)))
   } else {
     const reg = /^([A-Za-z]|\d)(\w|-)+@[\dA-Za-z]+\.([A-Za-z]{2,4})$/
     if (reg.test(email)) {
       const flag = db.add({ name, email })
       if (flag) {
         const data = [
-          [`\n${chalk.blue('[SUCCESS]')}\n\n${chalk.blue(`Add { ${name} } success.`)}\n`]
+          [`${chalk.blue('[SUCCESS]')}\n${chalk.blue(`Add { ${name} } success.`)}`]
         ]
         console.log(chalk.green(table(data, config)))
       } else {
         const data = [
-          [`\n${chalk.red('[WARNING]')}\n\n${chalk.red(`User name: { ${name} } already exists!`)}\n`]
+          [`${chalk.red('[WARNING]')}\n${chalk.red(`User name: { ${name} } already exists!`)}`]
         ]
-        console.log(chalk.yellow(table(data, config)))
+        console.log(hex(table(data, config)))
       }
     } else {
       const data = [
-        [`\n${chalk.red('[WARNING]')}\n\n${chalk.red('The email address is invalid!')}\n`]
+        [`${chalk.red('[WARNING]')}\n${chalk.red('The email address is invalid!')}`]
       ]
-      console.log(chalk.yellow(table(data, config)))
+      console.log(hex(table(data, config)))
     }
   }
 }

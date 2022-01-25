@@ -2,9 +2,11 @@ import { Command } from '@oclif/core'
 import { ArgInput } from '@oclif/core/lib/interfaces'
 import db from '../../utils/db'
 import chalk = require('chalk')
-import { table, TableUserConfig } from 'table'
+import { table, TableUserConfig, getBorderCharacters } from 'table'
 
+const hex = chalk.hex('#fec78f')
 const config: TableUserConfig = {
+  border: getBorderCharacters('norc'),
   columns: [
     { alignment: 'center', width: 50 }
   ]
@@ -20,14 +22,14 @@ export default class Rm extends Command {
     const flag = db.delete(idName)
     if (flag) {
       const data = [
-        [`\n${chalk.blue('[SUCCESS]')}\n\n${chalk.blue(`Delete { ${idName} } success.`)}\n`]
+        [`${chalk.blue('[SUCCESS]')}\n${chalk.blue(`Delete { ${idName} } success.`)}`]
       ]
-      console.log(chalk.green(table(data, config)))
+      console.log(hex(table(data, config)))
     } else {
       const data = [
-        [`\n${chalk.red('[WARNING]')}\n\n${chalk.red('User ID or name does not exist !')}\n`]
+        [`${chalk.red('[WARNING]')}\n${chalk.red('User ID or name does not exist !')}`]
       ]
-      console.log(chalk.yellow(table(data, config)))
+      console.log(hex(table(data, config)))
     }
   }
 }
