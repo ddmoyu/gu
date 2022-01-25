@@ -1,6 +1,6 @@
 # gus 
 
-![GitHub top language](https://img.shields.io/github/languages/top/ddmoyu/gu?style=for-the-badge) ![npm](https://img.shields.io/npm/v/@ddmoyu/gu?style=for-the-badge)
+![GitHub top language](https://img.shields.io/github/languages/top/ddmoyu/gus?style=for-the-badge) ![npm](https://img.shields.io/npm/v/@ddmoyu/gus?style=for-the-badge)
 
 git user switch, support local and global.(切换 git 用户，支持本地和全局)
 
@@ -8,7 +8,7 @@ git user switch, support local and global.(切换 git 用户，支持本地和�
 
 ## Usage \ 使用
 ```bash
-npm i -g @ddmoyu/gu
+npm i -g @ddmoyu/gus
 gus COMMAND
 ```
 

@@ -1,15 +1,15 @@
 {
-  "name": "@ddmoyu/gu",
+  "name": "@ddmoyu/gus",
   "version": "0.1.7",
   "description": "switch git user",
   "author": "ddmoyu",
   "bin": {
     "gus": "./bin/run"
   },
-  "homepage": "https://github.com/ddmoyu/gu",
+  "homepage": "https://github.com/ddmoyu/gus",
   "license": "MIT",
   "main": "dist/index.js",
-  "repository": "https://github.com/ddmoyu/gu",
+  "repository": "https://github.com/ddmoyu/gus",
   "files": [
     "/bin",
     "/dist",
@@ -63,7 +63,7 @@
   "engines": {
     "node": ">=12.0.0"
   },
-  "bugs": "https://github.com/ddmoyu/gu/issues",
+  "bugs": "https://github.com/ddmoyu/gus/issues",
   "keywords": [
     "oclif"
   ],
