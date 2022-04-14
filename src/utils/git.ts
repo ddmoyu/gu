@@ -44,6 +44,11 @@ function deleteUser(name: string): boolean {
   return false
 }
 
+function ansiRegex() {
+  const pattern = ['[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)', '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))'].join('|')
+  return new RegExp(pattern, 'g')
+}
+
 function setUser(idName: string, type: string): boolean {
   if (!idName) return false
   const all = db.all()
@@ -65,6 +70,12 @@ function setUser(idName: string, type: string): boolean {
     }
 
     if (user.name === '') return false
+  }
+
+  const flag = ansiRegex().test(user.name)
+  if (flag) {
+    user.name = user.name.replace(ansiRegex(), '')
+    user.email = user.email.replace(ansiRegex(), '')
   }
 
   if (type === 'local') {
